@@ -3,21 +3,27 @@ using System.Collections;
 
 public class PlayerMove : MonoBehaviour {
 
-	Vector2 velocity;
-	float movespeed = 1;
-
+	public Vector2 speed = new Vector2(50,50);
+	private Vector2 movement;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 	
+
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+		movement = new Vector2 (speed.x * Input.GetAxis ("Horizontal"), speed.y * Input.GetAxis ("Vertical"));
 
-		velocity = new Vector2 (Input.GetAxis ("Horizontal") * movespeed, Input.GetAxis ("Vertical") * movespeed);
-		transform.position += new Vector3 (velocity.x, velocity.y, 0);
-	
+
+	}
+
+	void FixedUpdate()
+	{
+		rigidbody2D.velocity = movement;
+
 	}
 }
